@@ -1,1 +1,1 @@
-window.ALL_CRATES = ["rust_template"];
+window.ALL_CRATES = ["kannagi","rust_template"];
