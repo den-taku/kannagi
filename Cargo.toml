@@ -1,7 +1,7 @@
 [package]
-name = "rust-template"
+name = "kannagi"
 version = "0.1.0"
-repository = "https://github.com/den-taku/rust-template"
+repository = "https://github.com/den-taku/kannagi"
 description = ""
 # homepage = ""
 # documentation = "" # Maybe needless
