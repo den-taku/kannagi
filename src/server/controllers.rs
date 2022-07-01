@@ -1,7 +1,7 @@
 use actix_web::Responder;
 
 pub async fn sound_test() -> impl Responder {
-    crate::devices::audio::sound_test();
+    crate::devices::audio::play_sound();
     "Ok\n".to_string()
 }
 
