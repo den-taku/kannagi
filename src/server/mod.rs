@@ -1,6 +1,6 @@
 use actix_web::{middleware, App, HttpServer};
 
-mod controller;
+mod controllers;
 mod service;
 
 pub async fn run_server(port: u16) -> std::io::Result<()> {

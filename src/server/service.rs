@@ -1,4 +1,4 @@
-use crate::server::controller::*;
+use crate::server::controllers::*;
 use actix_web::web;
 use log::trace;
 
