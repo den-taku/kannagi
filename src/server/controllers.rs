@@ -1,5 +1,10 @@
 use actix_web::Responder;
 
+pub async fn sound_test() -> impl Responder {
+    crate::controllers::sound_test();
+    "Ok\n".to_string()
+}
+
 pub async fn root() -> impl Responder {
     "Root: Ok\n".to_string()
 }

@@ -14,6 +14,7 @@ readme = "README.md"
 
 [dependencies]
 actix-web = "4.1.0"
+ears = "0.8.0"
 file-rotate = "0.6.0"
 log = "0.4.17"
 simplelog = "0.12.0"
