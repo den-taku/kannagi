@@ -1,11 +1,5 @@
 use actix_web::{get, middleware, web, App, HttpServer, Responder};
-use file_rotate::{
-    compression::Compression, suffix::AppendTimestamp, suffix::FileLimit, ContentLimit, FileRotate,
-};
 use log::{debug, info, trace};
-use simplelog::{
-    ColorChoice, CombinedLogger, Config, LevelFilter, TermLogger, TerminalMode, WriteLogger,
-};
 
 #[get("/")]
 async fn root() -> impl Responder {
@@ -28,28 +22,7 @@ fn app_server(cfg: &mut web::ServiceConfig) {
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    // Configure logger
-    CombinedLogger::init(vec![
-        // stdio
-        TermLogger::new(
-            LevelFilter::Debug,
-            Config::default(),
-            TerminalMode::Mixed,
-            ColorChoice::Auto,
-        ),
-        // file
-        WriteLogger::new(
-            LevelFilter::Trace,
-            Config::default(),
-            FileRotate::new(
-                "target/trace_log",
-                AppendTimestamp::default(FileLimit::MaxFiles(10)),
-                ContentLimit::Lines(100_000),
-                Compression::None,
-            ),
-        ),
-    ])
-    .unwrap();
+    kannagi::utils::logging::configure_logger();
     debug!("logger configured.");
 
     info!("Server running!");
@@ -65,5 +38,6 @@ async fn main() -> std::io::Result<()> {
     .bind((host, port))?
     .run()
     .await;
+    kannagi::server::server();
     server
 }
