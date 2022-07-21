@@ -27,9 +27,9 @@ pub async fn sound_pause(data: web::Data<Mutex<Sender<AudioSignal>>>) -> impl Re
     "Ok\n".to_string()
 }
 
-pub async fn sound_stop(data: web::Data<Mutex<Sender<AudioSignal>>>) -> impl Responder {
+pub async fn sound_clear(data: web::Data<Mutex<Sender<AudioSignal>>>) -> impl Responder {
     let tx = data.lock().unwrap();
-    tx.send(Stop).unwrap();
+    tx.send(Clear).unwrap();
     "Ok\n".to_string()
 }
 
