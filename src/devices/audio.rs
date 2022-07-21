@@ -56,7 +56,6 @@ impl AudioDevice {
                     }
                     Append(id) => {
                         info!("Append({id}) recieved");
-                        // sink.stop();
                         let file = BufReader::new(File::open("./samples/sample.wav").unwrap());
                         let source = Decoder::new(file).unwrap();
                         sink.append(source);
