@@ -8,6 +8,6 @@ async fn main() -> std::io::Result<()> {
     let devices = kannagi::devices::configure_devices()?;
 
     info!("Server running!");
-    let port = 8080;
+    let port = 80;
     kannagi::server::run_server(port, devices).await
 }
