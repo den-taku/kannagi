@@ -13,6 +13,6 @@ pub fn configure_server(cfg: &mut web::ServiceConfig) {
         .route("/sound/ser_speed", web::get().to(sound_set_speed))
         .route("/sound/play", web::get().to(sound_play))
         .route("/sound/pause", web::get().to(sound_pause))
-        .route("/sound/stop", web::get().to(sound_stop))
+        .route("/sound/clear", web::get().to(sound_clear))
         .route("/sound/append", web::get().to(sound_append));
 }

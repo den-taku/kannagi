@@ -10,7 +10,7 @@ pub enum AudioSignal {
     SetSpeed(f32),
     Play,
     Pause,
-    Stop,
+    Clear,
     Append(usize),
 }
 
@@ -29,7 +29,7 @@ impl AudioDevice {
         let (tx, rx) = unbounded();
         std::thread::spawn(move || {
             let (_stream, stream_handle) = OutputStream::try_default().unwrap();
-            let sink = Sink::try_new(&stream_handle).unwrap();
+            let mut sink = Sink::try_new(&stream_handle).unwrap();
             loop {
                 use AudioSignal::*;
                 match rx.recv().unwrap() {
@@ -49,9 +49,10 @@ impl AudioDevice {
                         info!("Pause recieved");
                         sink.pause();
                     }
-                    Stop => {
-                        info!("Stop recieved");
-                        sink.stop();
+                    Clear => {
+                        info!("Clear recieved");
+                        drop(sink);
+                        sink = Sink::try_new(&stream_handle).unwrap();
                     }
                     Append(id) => {
                         info!("Append({id}) recieved");
